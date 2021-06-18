@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            img{
+                height:500px;
+            }
+        </style>
+        <script>
+            function myfun(newimg){
+                document.getElementById("hello").src="Grid Images/"+newimg+".jpg";
+            }
+        </script>
+    </head>
+    <body>
+        <h1>HELLO!!</h1>
+        <img id="hello" src="Grid Images/hi.jpg">
+        <select name="sel" onclick="myfun(this.value)">
+            <option value="sunflower">Sunflower</option>
+            <option value="tulip">Tulip</option>
+            <option value="Lily">Lily</option>
+            <option value="rose">Rose</option>
+        </select>
+    </body>
+</html>

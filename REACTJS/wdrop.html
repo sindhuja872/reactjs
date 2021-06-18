@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DropDownWeatherApp</title>
+    <script>
+        function myfun(city){
+            var request = new XMLHttpRequest();
+            request.open("GET","https://api.openweathermap.org/data/2.5/weather?q="+city+"&appid=93f26e3c57081a6210de53b8dcfdfea4")
+            request.onload=function (){
+                if(request.status>=200 && request.status<400){
+                    var data=JSON.parse(request.responseText);
+                    console.log(data);
+                document.getElementById("temp").innerHTML=data.main.temp;
+                document.getElementById("desc").innerHTML=data.weather[0].description;
+                document.getElementById("speed").innerHTML=data.wind.speed;
+                var icon=data.weather[0].icon+".png";
+                document.getElementById("myimg").src="https://openweathermap.org/img/w/"+icon;
+
+                }
+                else{
+                    console.log("Some error");
+                }
+            }
+            request.onerror=function (){
+                console.log("Connection error");
+            }
+            request.send();    
+        }
+    </script>
+</head>
+<body>
+    <h1>Weather Status</h1>
+    <select name="weather" onclick="myfun(this.value)">
+        <option value="Hyderabad">Hyderabad</option>
+        <option value="Warangal">warangal</option>
+    </select>
+    <h1 id="temp">Temperature: </h1>
+    <h1 id="desc">Description: </h1>
+    <h1 id="speed">WindSpeed: </h1>
+    <img id="myimg" alt="weatherimg"/>
+</body>
+</html>
